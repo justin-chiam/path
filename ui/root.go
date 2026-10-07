@@ -31,6 +31,10 @@ func (m RootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 
 	case tea.WindowSizeMsg:
+		// views get the space inside the border
+		msg.Width -= borderStyle.GetHorizontalFrameSize()
+		msg.Height -= borderStyle.GetVerticalFrameSize()
+
 		cmds := make([]tea.Cmd, 0, len(m.views))
 		for id, view := range m.views {
 			var cmd tea.Cmd
@@ -50,5 +54,5 @@ func (m RootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m RootModel) View() string {
-	return m.views[m.active].View()
+	return borderStyle.Render(m.views[m.active].View())
 }

@@ -12,4 +12,6 @@ var (
 	titleStyle = lipgloss.NewStyle().Bold(true).Foreground(accentColour)
 	textStyle  = lipgloss.NewStyle().Foreground(textColour)
 	hintStyle  = lipgloss.NewStyle().Foreground(mutedColour)
+
+	borderStyle = lipgloss.NewStyle().BorderStyle(lipgloss.RoundedBorder()).Margin(1, 2)
 )
