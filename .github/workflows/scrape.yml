@@ -1,0 +1,40 @@
+name: scrape
+on:
+  schedule:
+    # 1st of every month at 02:00 UTC
+    - cron: "0 2 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    name: scrape
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: jdx/mise-action@v5.1.1
+
+      - name: Scrape courses
+        run: mise run scrape
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v8.1.1
+        with:
+          branch: chore/update-courses
+          delete-branch: true
+          add-paths: data/courses.json
+          commit-message: "chore: update courses.json"
+          title: "chore: update courses.json"
+          body: |
+            Automated refresh of `data/courses.json` from the UNSW timetable.
+
+            Triggered by the `scrape` workflow ([run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})).
