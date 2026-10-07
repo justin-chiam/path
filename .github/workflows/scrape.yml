@@ -26,6 +26,9 @@ jobs:
       - name: Scrape courses
         run: mise run scrape
 
+      - name: Validate courses
+        run: mise run validate
+
       - name: Open pull request
         uses: peter-evans/create-pull-request@v8.1.1
         with:

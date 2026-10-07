@@ -10,3 +10,6 @@ run = "golangci-lint run"
 
 [build]
 run = "go build -o path ."
+
+[validate]
+run = "cue vet -c data/courses.cue data/courses.json --path '\"courses\"'"

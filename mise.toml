@@ -3,6 +3,7 @@ go = "latest"
 golangci-lint = "latest"
 python = "latest"
 uv = "latest"
+cue = "latest"
 
 [task_config]
 includes = ["tasks.toml"]
