@@ -7,3 +7,6 @@ run = "uv run scraper.py --dump ../data/courses.json"
 
 [lint]
 run = "golangci-lint run"
+
+[build]
+run = "go build -o path ."
