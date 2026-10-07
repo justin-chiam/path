@@ -1,0 +1,9 @@
+#:schema https://mise.jdx.dev/schema/mise-task.json
+# ref: https://mise.jdx.dev/tasks/
+
+[scrape]
+dir = "scraper"
+run = "uv run scraper.py --dump ../data/courses.json"
+
+[lint]
+run = "golangci-lint run"
